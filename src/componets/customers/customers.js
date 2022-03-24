@@ -6,9 +6,8 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Navbar from '../Navbar';
 import { styled } from '@mui/material/styles';
-import { AppBar, Button, Container, CssBaseline, Drawer, Grid, Paper, Select, SwipeableDrawer, TextField, Toolbar } from '@mui/material';
+import {  Button, Container, CssBaseline, Drawer, FormControlLabel, Grid, Select, Switch, TextField, Toolbar } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
-import { ArrowDropDown } from '@mui/icons-material';
 import AddIcon from '@mui/icons-material/Add';
 const useStyles = styled(({ theme }) => ({
   menuButton: {
@@ -40,9 +39,51 @@ width:600
 export default function Customer() {
   const [value, setValue] = React.useState('1');
 
+  const contactMethod={
+    type1:"",
+    type2:"",
+    email:""
+  }
+
+  const Contact=
+   [ {firstname:"",
+    lastname:"",
+    position:""},
+    {
+    contactMethod}
+  
+  ]
+
+  const[addcontacts,setAddcontacts]=React.useState([Contact])
+  const [addcontactmethod,setAddcontactmethod]=React.useState([contactMethod])
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  let addmoreContactmethod = () => {
+    setAddcontactmethod([...addcontactmethod, {  type1:"",
+    type2:"",
+    email:""}])
+  }
+  let removeContactmethod = (i) => {
+    let newaddcontactmethod = [...addcontactmethod];
+    newaddcontactmethod.splice(i, 1);
+    setAddcontactmethod(newaddcontactmethod)
+  }
+
+let removeAddcontacts = (i) => {
+    let newcontacts = [...addcontacts];
+    newcontacts.splice(i, 1);
+    setAddcontacts(newcontacts)
+}
+
+let addNewMoreContacts = () => {
+  setAddcontacts([...addcontacts, [{firstname:"",lastname:"",  position:""}, {contactMethod}]])
+}
+
+
+
   const classes=useStyles()
   const [open,setOpen]=React.useState(false)
 
@@ -76,7 +117,7 @@ export default function Customer() {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Container >
+          <Container  >
               <form>
                Customer Name
                 <TextField  placeholder='customer name' style={{paddingTop:"20px",paddingLeft:"4px",paddingRight:"2000px" ,width: "2600px"}}>
@@ -87,13 +128,13 @@ export default function Customer() {
                 <br/>
                 <br/>
                 
-                <div>
+                
                <Grid container >
     <Grid item xs={3}>
     Street address
     <TextField
             id="re_ps"
-            label="Street address"
+            placeholder="Street address"
              margin="normal"
             style={{paddingRight: "10px", width: "350px"}}
         />
@@ -102,7 +143,7 @@ export default function Customer() {
           Unit Address  
           <TextField
             id="re_mooe"
-            label="24"
+            placeholder="24"
             // value={this.state.re_mooe_value}
             // onChange={this.re_mooe_handleChange('value')}
             margin="normal"
@@ -117,7 +158,7 @@ export default function Customer() {
     City
     <TextField
             id="re_ps"
-            label="City"
+            placeholder="City"
              margin="normal"
             style={{paddingRight: "10px", width: "340px"}}
         />
@@ -126,11 +167,11 @@ export default function Customer() {
           State
           <TextField
             id="re_mooe"
-            label="-"
+            placeholder="-"
             // value={this.state.re_mooe_value}
             // onChange={this.re_mooe_handleChange('value')}
             margin="normal"
-            type="number"           
+                      
             style={{width: "80px",paddingRight: "10px"}}
         />
     </Grid>
@@ -142,7 +183,7 @@ export default function Customer() {
             // value={this.state.re_mooe_value}
             // onChange={this.re_mooe_handleChange('value')}
             margin="normal"
-            type="number"           
+                   
             style={{width: "120px",paddingRight: "10px"}}
         />
     </Grid>
@@ -152,8 +193,8 @@ export default function Customer() {
  <Grid item xs={1} >
           Latitude  
           <TextField
-            id="re_mooe"
-            label="-39.86652"
+           
+            placeholder="-39.86652"
             // value={this.state.re_mooe_value}
             // onChange={this.re_mooe_handleChange('value')}
             margin="normal"
@@ -164,8 +205,8 @@ export default function Customer() {
     <Grid item xs={2} style={{paddingLeft: "102px"}}>
          longitude 
           <TextField
-            id="re_mooe"
-            label="27.35914"
+            
+            placeholder="27.35914"
             // value={this.state.re_mooe_value}
             // onChange={this.re_mooe_handleChange('value')}
             margin="normal"
@@ -215,62 +256,96 @@ export default function Customer() {
                
            <h4>Contact</h4> 
            <br/>
-            Name Of Contact
-            <TextField  placeholder='Firstname' style={{paddingTop:"20px",paddingLeft:"4px",paddingRight:"2000px" ,width: "2600px"}}>
-                </TextField> 
+
+          {addcontacts.map((element,index)=>(
+  <div key={index}>
+  Name Of Contact
+  <TextField  placeholder='Firstname' name="firstname"value={element.firstname || ""} style={{paddingTop:"20px",paddingLeft:"4px",paddingRight:"2000px" ,width: "2600px"}}>
+      </TextField> 
+     
+      <br/>
+      <TextField name="lastname"value={element.lastname || ""} placeholder='last name' style={{paddingTop:"20px",paddingLeft:"4px",paddingRight:"2000px" ,width: "2600px"}}>
+      </TextField>
+      <br/>
+      <br/>
+      Position
+      <TextField name="position"value={element.position || ""} placeholder='Position' style={{paddingTop:"20px",paddingLeft:"4px",paddingRight:"2000px" ,width: "2600px"}}>
+      </TextField>  
+      <br/>
+      <br/>
+
+      Contact Methods
+{addcontactmethod.map((element,index)=>(
+<Grid container key={index} >
+<Grid item xs={1} >
+<Select
+//  id="re_mooe"
+name="type1" value={element.type1 || ""}
+
+// value={this.state.re_mooe_value}
+// onChange={this.re_mooe_handleChange('value')}
+margin="normal"
+          
+style={{width: "90px",paddingRight: "10px"}}
+/>
+</Grid>
+<Grid item xs={1} >
+<Select
+//  id="re_mooe"
+
+name="type2" value={element.type2 || ""}
+// value={this.state.re_mooe_value}
+// onChange={this.re_mooe_handleChange('value')}
+margin="normal"
+          
+style={{width: "80px",paddingRight: "10px"}}
+/>
+</Grid>
+<Grid item xs={5} style={{paddingLeft:"10px",paddingRight:"5px",paddingBottom:"20px"}} >
+<TextField
+id="re_mooe"
+placeholder="username@gmail.com"
+name="email" value={element.email || ""}
+// value={this.state.re_mooe_value}
+// onChange={this.re_mooe_handleChange('value')}
+margin="normal"
+         
+style={{width: "390px",paddingRight: "10px"}}
+/>
+</Grid>
+
+<Grid item xs={4} style={{paddingLeft: "2px",paddingTop:"30px"}} >
+{
+index ? 
+<Button variant="outlined"  onClick={()=>{removeContactmethod(index)}}>
+
+-
+</Button> : null
+}       
+
+</Grid>
+</Grid>   ))}
+<Grid item xs={5}>
+<Button variant="outlined" className="button add" type="button" onClick={() => addmoreContactmethod()}> <AddIcon fontSize='small' />Add Conatct Method</Button>
+</Grid>
+{
+index ? 
+<Button variant="outlined"  onClick={()=>{removeAddcontacts(index)}}>
+
+-
+</Button> : null
+}
+</div>
+
+
+          ))} 
+         
+<br/>
+<br/>
+
+<Grid style={{paddingLeft: "10px"}}>
+<Button variant="outlined"style={{width:"655px"}} onClick={()=>addNewMoreContacts()} >Add Contact</Button></Grid>
                
-                <br/>
-                <TextField  placeholder='last name' style={{paddingTop:"20px",paddingLeft:"4px",paddingRight:"2000px" ,width: "2600px"}}>
-                </TextField>
-                <br/>
-                <br/>
-                Position
-                <TextField  placeholder='' style={{paddingTop:"20px",paddingLeft:"4px",paddingRight:"2000px" ,width: "2600px"}}>
-                </TextField>  
-                <br/>
-                <br/>
-
-                Contact Methods
-                <Grid container >
- <Grid item xs={1} >
-             <Select
-            id="re_mooe"
-            label="-39.86652"
-            // value={this.state.re_mooe_value}
-            // onChange={this.re_mooe_handleChange('value')}
-            margin="normal"
-            type="number"           
-            style={{width: "90px",paddingRight: "10px"}}
-        />
-    </Grid>
-    <Grid item xs={1} >
-             <Select
-            id="re_mooe"
-            label="-39.86652"
-            // value={this.state.re_mooe_value}
-            // onChange={this.re_mooe_handleChange('value')}
-            margin="normal"
-            type="number"           
-            style={{width: "80px",paddingRight: "10px"}}
-        />
-    </Grid>
-    <Grid item xs={1} style={{paddingLeft:"10px",paddingRight:"5px",paddingBottom:"2000px"}} >
-             <TextField
-            id="re_mooe"
-            placeholder="username@gmail.com"
-            // value={this.state.re_mooe_value}
-            // onChange={this.re_mooe_handleChange('value')}
-            margin="normal"
-            type="number"           
-            style={{width: "390px",paddingRight: "10px"}}
-        />
-    </Grid>
-       </Grid>  
- 
-
-
- 
-               </div>
                 
               </form>
 
@@ -280,7 +355,53 @@ export default function Customer() {
 
 
         </TabPanel>
-        <TabPanel value="2">Location</TabPanel>
+        <TabPanel value="2">
+        <FormControlLabel
+        control={
+          <Switch
+            // checked={success}
+            // onChange={handleChange}
+            color="primary"
+            value="dynamic-class-name"
+          />
+        }
+        label="Same as Billing Address"
+      />
+      <br/>
+      <FormControlLabel
+        control={
+          <Switch
+            // checked={success}
+            // onChange={handleChange}
+            color="primary"
+            value="dynamic-class-name"
+          />
+        }
+        label="Location Purchases Order"
+      />
+
+      <br/>
+      <FormControlLabel
+        control={
+          <Switch
+            // checked={success}
+            // onChange={handleChange}
+            color="primary"
+            value="dynamic-class-name"
+          />
+        }
+        label="Signature Required"
+      />
+      <br/>
+      <br/>
+       <Button variant="outlined"style={{width:"655px"}}><AddIcon fontSize='small'/> Add Location Contact</Button>
+       <br/>
+       <br/>
+       Tags
+       <br/>
+       <Select placeholder='select tags' style={{width:"655px"}}></Select>
+        
+        </TabPanel>
         <TabPanel value="3">Billing</TabPanel>
         <TabPanel value="4">Payment</TabPanel>
         <TabPanel value="5">Services</TabPanel>
