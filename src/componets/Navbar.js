@@ -21,6 +21,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 import Drawer from '@mui/material/Drawer';
 import { Link } from 'react-router-dom';
+import { Tab, Tabs, Typography } from '@mui/material';
 
 
 
@@ -72,82 +73,42 @@ export default function Navbar() {
             },
         },
     }));
-
-    const classes = useStyles()
+    const [value, setValue] = React.useState()
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+      };
     return (
-
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" >
-                <Toolbar>
-                    <IconButton component="div" sx={{ flexGrow: 2 }} size="small" >
-                        <MenuIcon size="small"
-                            color="inherit"
-                            aria-label="speed"
-                        >
-                        </MenuIcon>Dashboard
-                    </IconButton>
-                    <Toolbar />
-                    {/* <Drawer
-                        anchor="right"
-                        onClose={() => setOpen(false)}
-                        open={open}
-                    >
-                      <Link to="/customer"> <Button variant="outlined">
-                            <AddIcon fontSize='small' />
-                            New Customer
-                        </Button></Link>  */}
-                    {/* </Drawer> */}
-                    <Link to="/customer">  <IconButton component="div"  sx={{ flexGrow: 2 }} size="small" >
-                        <GroupsIcon
-                            color="inherit"
-                            fontSize='small'
-                            aria-label="peoplealt"
-                        />
-                        Customers
-                    </IconButton></Link> 
-                    <IconButton component="div" sx={{ flexGrow: 2 }} size="small" >
-                        Route
-                    </IconButton>
-                    <IconButton component="div" sx={{ flexGrow: 2 }} size="small" >
-
-                        <ReceiptIcon fontSize='small' />  Billing
-                    </IconButton>
-                    <IconButton component="div" sx={{ flexGrow: 2 }} size="small" >
-                        <CheckBoxIcon fontSize='small' />Follow Up
-                    </IconButton>
-                    <IconButton component="div" sx={{ flexGrow: 2 }} size="small" >
-
-                        <ContentPasteIcon fontSize='small' /> Reports
-                    </IconButton>
-                    <IconButton component="div" sx={{ flexGrow: 2 }} size="small" >
-
-                        <PriceChangeIcon />
-                        Pricing
-                    </IconButton>
-                    <IconButton component="div" sx={{ flexGrow: 2 }} size="small" >
-                        <Inventory2Icon fontSize='small' />  Inventory
-                    </IconButton>
-                    <Search>
+<React.Fragment>
+     
+            <AppBar position="fixed" sx={{background:'black'}} style={{height:"70px"}}  >
+              <Toolbar>
+              <Tabs textColor='inherit' style={{fontSize:"10px",width:"2000px"}} value={value} onChange={handleChange}>                
+                  <Tab  icon={<MenuIcon fontSize='small'  style={{fontSize:"15px"}}/>}  style={{fontSize:"13px"}}  fontSize='small' iconPosition="start"  label="Dashboard"/>
+                  <Tab  icon={<GroupsIcon fontSize='small' style={{fontSize:"15px"}} />} iconPosition="start"  style={{fontSize:"13px"}} label="Customer"   component={Link} to="/customer"/>
+                  <Tab  label="Route" fontSize='small'style={{fontSize:"13px"}} />
+                  <Tab  icon={<ReceiptIcon fontSize='small'style={{fontSize:"15px"}} />} iconPosition="start" style={{fontSize:"13px"}}  label="Billing" />
+                  <Tab  icon={<CheckBoxIcon fontSize='small' style={{fontSize:"15px"}}/>} iconPosition="start"  style={{fontSize:"13px"}} label="Follow Up" />
+                  <Tab  icon={<ContentPasteIcon fontSize='small'style={{fontSize:"15px"}} />}  fontSize='small' style={{fontSize:"13px"}}  iconPosition="start"  label="Reports" />
+                  <Tab  icon={<PriceChangeIcon fontSize='small'style={{fontSize:"15px"}} />} iconPosition="start" style={{fontSize:"13px"}}  label="Pricing" />
+                  <Tab  icon={<Inventory2Icon fontSize='small' style={{fontSize:"15px"}}/>} iconPosition="start" style={{fontSize:"13px"}}  label="Inventory" />                            
+              </Tabs>
+              <Search style={{fontSize:"13px"}}  >
                         <SearchIconWrapper>
-                            <SearchIcon />
+                            <SearchIcon style={{fontSize:"10px"}} />
                         </SearchIconWrapper>
-                        <StyledInputBase
+                        <StyledInputBase style={{fontSize:"10px"}} 
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
-
-                    <IconButton >
-                        <SettingsIcon fontSize='small' />
-                    </IconButton>
-                    <IconButton >
-                        <NotificationsNoneIcon fontSize='small' />
-                    </IconButton>
-                    <IconButton >
-                        <HelpOutlineIcon fontSize='small' />
-                    </IconButton>
-                </Toolbar>
+              <Button  variant='centered'    sx={{marginLeft:'auto'}}>  <SettingsIcon fontSize='small' style={{fontSize:"15px"}}
+/>   </Button>
+                    <Button variant='centered'   sx={{marginLeft:'auto'}}>  <NotificationsNoneIcon fontSize='small' style={{fontSize:"15px"}}/>    </Button>
+                    <Button variant='centered'   sx={{marginLeft:'auto'}}>    <HelpOutlineIcon fontSize='small' style={{fontSize:"15px"}} />    </Button>
+            
+              </Toolbar>
             </AppBar>
-        </Box>
+            </React.Fragment>
+        
     );
 }

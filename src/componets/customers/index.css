@@ -1,0 +1,35 @@
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-start; */
+    justify-content: space-between;
+    column-gap: 10px;
+    row-gap: 1em;
+   
+}
+.contact{
+    flex-direction: column;
+    display: flex;
+    row-gap: 1em;
+}
+
+.street{
+    flex:2 1 auto;
+    row-gap: 1em;
+
+}
+
+    .city {
+        flex: 2;
+         row-gap: 1em;
+      }
+
+      .state {
+        flex: 1 ;
+      }
+
+      .zipcode {
+        flex: 2 ;
+      }
+
+
