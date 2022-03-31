@@ -14,7 +14,7 @@
 }
 
 .street{
-    flex:2 1 auto;
+    flex:2  auto;
     row-gap: 1em;
 
 }
@@ -32,4 +32,24 @@
         flex: 2 ;
       }
 
-
+      .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;  
+        padding: 10px 0;  
+        background: rgb(245, 239, 239); 
+        padding: 7px 25px;   
+        
+        
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    } 
+    .container{
+        padding-top: 60px;
+        padding-bottom: 40px;
+       
+    }
+    

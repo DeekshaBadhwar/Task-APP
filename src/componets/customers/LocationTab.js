@@ -5,8 +5,10 @@ import React from 'react'
 
 export default function LocationTab() {
   return (
-    <div>
-    <FormControlLabel
+    <div className='box'>
+      <div className='contact'>
+      <div>
+      <FormControlLabel
       control={
         <Switch
           // checked={success}
@@ -17,7 +19,10 @@ export default function LocationTab() {
       }
       label="Same as Billing Address"
     />
-    <br />
+    
+      </div>
+   
+    <div>
     <FormControlLabel
       control={
         <Switch
@@ -29,27 +34,31 @@ export default function LocationTab() {
       }
       label="Location Purchases Order"
     />
+    </div>
+   <div>
+   <FormControlLabel
+    
+    control={
+      <Switch
+        // checked={success}
+        // onChange={handleChange}
+        color="primary"
+        value="dynamic-class-name"
+      />
+    }
+    label="Signature Required"
+  />
+     </div></div>
+     
 
     <br />
-    <FormControlLabel
-      control={
-        <Switch
-          // checked={success}
-          // onChange={handleChange}
-          color="primary"
-          value="dynamic-class-name"
-        />
-      }
-      label="Signature Required"
-    />
     <br />
-    <br />
-    <Button variant="outlined" style={{ width: "655px" }}><AddIcon fontSize='small' /> Add Location Contact</Button>
+    <Button variant="outlined" fullWidth ><AddIcon fontSize='small' /> Add Location Contact</Button>
     <br />
     <br />
     Tags
     <br />
-    <Select placeholder='select tags' style={{ width: "655px" }}></Select>
+    <Select placeholder='select tags' fullWidth></Select>
 
  </div>
   )

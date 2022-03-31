@@ -18,10 +18,11 @@ import PriceChangeIcon from '@mui/icons-material/PriceChange';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-
+import './customers/index.css'
 import Drawer from '@mui/material/Drawer';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, Typography } from '@mui/material';
+import './customers/index.css'
 
 
 
