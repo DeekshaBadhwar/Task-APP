@@ -29,9 +29,8 @@ export default function CustomersTab() {
                 return contact;
             }))
         }
-    
 
-  return (
+ return (
     <Container>
         <div className="box">
         <FormLabel id="demo-radio-buttons-group-label">Customer Name</FormLabel>
